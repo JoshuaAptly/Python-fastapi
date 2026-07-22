@@ -1,0 +1,23 @@
+repos:
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.12.2
+    hooks:
+      - id: ruff
+        args: [--fix]
+      - id: ruff-format
+
+  - repo: local
+    hooks:
+      - id: check-branch-name
+        name: Check branch name
+        entry: scripts/check-branch-name.sh
+        language: script
+        pass_filenames: false
+        always_run: true
+        stages: [pre-commit]
+
+      - id: check-commit-msg
+        name: Check commit message
+        entry: scripts/check-commit-msg.sh
+        language: script
+        stages: [commit-msg]
